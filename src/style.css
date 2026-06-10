@@ -1,0 +1,298 @@
+/* 기본 셋업 */
+:root {
+  --bg-color: #f4f1ea;
+  --ticket-bg: #fffdf7;
+  --ink-color: #222;
+  --point-red: #b94a48;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: var(--bg-color);
+  color: var(--ink-color);
+  display: flex;
+  justify-content: center;
+}
+
+.app-layout {
+  width: 100%;
+  max-width: 450px;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  box-shadow: 0 0 20px rgba(0,0,0,0.05);
+}
+
+.view-container {
+  padding: 20px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 네비게이션 */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  border-bottom: 1px dashed #ccc;
+  padding-bottom: 10px;
+}
+
+.nav button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* 홈 화면 */
+.home-view {
+  text-align: center;
+  padding-top: 80px;
+}
+
+.logo {
+  font-size: 2.5rem;
+  letter-spacing: -2px;
+  margin-bottom: 10px;
+}
+
+.logo span {
+  font-weight: 300;
+  color: var(--point-red);
+}
+
+.stamp-deco {
+  display: inline-block;
+  border: 3px double var(--point-red);
+  color: var(--point-red);
+  padding: 5px 15px;
+  font-weight: bold;
+  transform: rotate(-15deg);
+  margin: 20px 0;
+  opacity: 0.7;
+}
+
+.menu-buttons {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+button.btn-main {
+  background: var(--ink-color);
+  color: white;
+  padding: 15px;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+button.btn-sub {
+  background: none;
+  border: 1px solid var(--ink-color);
+  padding: 15px;
+  cursor: pointer;
+}
+
+/* 폼 스타일 */
+.create-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+label {
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+input, select, textarea {
+  padding: 12px;
+  border: 1px solid #ddd;
+  background: white;
+  font-family: inherit;
+}
+
+.rating-input {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-submit {
+  margin-top: 20px;
+  background: var(--point-red);
+  color: white;
+  border: none;
+  padding: 18px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* 티켓 디자인 (영수증 형태) */
+.ticket-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.ticket-wrapper {
+  position: relative;
+}
+
+.receipt-ticket {
+  background: var(--ticket-bg);
+  padding: 30px 20px;
+  position: relative;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+  border-top: 1px solid #eee;
+}
+
+/* 영수증 톱니바퀴 효과 */
+.receipt-ticket::before, .receipt-ticket::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background-size: 20px 20px;
+}
+
+.receipt-ticket::before {
+  top: -10px;
+  background-image: radial-gradient(circle at 10px -5px, transparent 12px, var(--ticket-bg) 13px);
+}
+
+.receipt-ticket::after {
+  bottom: -10px;
+  background-image: radial-gradient(circle at 10px 15px, transparent 12px, var(--ticket-bg) 13px);
+}
+
+.receipt-header {
+  text-align: center;
+  border-bottom: 1px dashed #aaa;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.receipt-type { font-size: 0.9rem; margin: 0; }
+.receipt-id { font-size: 0.7rem; color: #888; margin: 5px 0 0; }
+
+.ticket-title {
+  text-align: center;
+  font-size: 1.4rem;
+  margin: 10px 0 20px;
+  word-break: keep-all;
+}
+
+.receipt-info p {
+  margin: 8px 0;
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.receipt-info span { font-weight: bold; }
+
+.receipt-divider {
+  border-bottom: 1px solid #eee;
+  margin: 20px 0;
+}
+
+.receipt-review {
+  text-align: center;
+  font-style: italic;
+  min-height: 40px;
+}
+
+.receipt-rating {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--point-red);
+  margin-top: 15px;
+}
+
+.receipt-footer {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.barcode {
+  height: 40px;
+  background: linear-gradient(90deg, 
+    #222 0%, #222 5%, transparent 5%, transparent 7%, 
+    #222 7%, #222 12%, transparent 12%, transparent 13%,
+    #222 13%, #222 20%, transparent 20%, transparent 22%,
+    #222 22%, #222 25%, transparent 25%, transparent 35%,
+    #222 35%, #222 38%, transparent 38%, transparent 40%,
+    #222 40%, #222 55%, transparent 55%, transparent 60%,
+    #222 60%, #222 70%, transparent 70%, transparent 75%,
+    #222 75%, #222 80%, transparent 80%, transparent 82%,
+    #222 82%, #222 95%, transparent 95%, transparent 100%);
+  margin-bottom: 10px;
+}
+
+.receipt-footer p {
+  font-size: 0.6rem;
+  color: #999;
+}
+
+/* 아날로그 스탬프 효과 */
+.analog-stamp {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  width: 80px;
+  height: 80px;
+  border: 4px double var(--point-red);
+  border-radius: 50%;
+  color: var(--point-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  opacity: 0.3;
+  transform: rotate(25deg);
+  pointer-events: none;
+}
+
+.btn-delete {
+  margin-top: 15px;
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 0.8rem;
+  cursor: pointer;
+  width: 100%;
+  text-align: right;
+  text-decoration: underline;
+}
+
+.empty-msg {
+  text-align: center;
+  color: #999;
+  margin-top: 100px;
+}
